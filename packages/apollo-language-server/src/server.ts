@@ -9,7 +9,7 @@ import {
   ServerCapabilities,
   WorkspaceFolder
 } from "vscode-languageserver";
-import { QuickPickItem } from "vscode";
+// import { QuickPickItem } from "vscode";
 import { GraphQLWorkspace } from "./workspace";
 import { GraphQLLanguageProvider } from "./languageProvider";
 import { LanguageServerLoadingHandler } from "./loadingHandler";
@@ -202,9 +202,8 @@ connection.onNotification("apollographql/reloadService", () =>
   workspace.reloadService()
 );
 
-connection.onNotification(
-  "apollographql/tagSelected",
-  (selection: QuickPickItem) => workspace.updateSchemaTag(selection)
+connection.onNotification("apollographql/tagSelected", (selection: any) =>
+  workspace.updateSchemaTag(selection)
 );
 
 connection.onNotification("apollographql/getStats", async ({ uri }) => {
